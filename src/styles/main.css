@@ -1,0 +1,105 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #b1d4c3;
+    user-select: none;
+    cursor: pointer;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background: linear-gradient(325deg,
+                #91E6B8 0%, #2A7B9B 0%, #91E6B8 70%, #b9e5e6 100%);
+    padding: 40px 60px;
+}
+
+/* NOVO: Estiliza o h2 para remover o espaçamento padrão que pode atrapalhar o layout */
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilização da imagem do título */
+.titulo-imagem {
+    max-width: 100%; 
+    width: 300px; 
+    height: auto; 
+    display: block;
+    /* Remover 'display: block' pode ser necessário se você quiser centralizá-la dentro do h2 */
+    
+    /* Adicione uma pequena margem inferior para separar do grid do jogo */
+    margin-bottom: 20px;
+}
+
+.reset {
+    padding: 15px 20px;
+    width: 100%;
+    border-radius: 25px;
+    color: black;
+    background-color: #ffffff;
+    border: none;
+    font-size: 1.3em;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+}
+
+.game {
+    width: 430px;
+    height: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+
+.item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dcd1d1;
+    font-size: 3em;
+    transform: rotateY(180deg);
+    transition: 0.25s;
+    border-radius: 15px;
+}
+
+.item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #0f2832;
+    transition: 0.25s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+    border-radius: 8px;
+}
+
+.item.boxOpen {
+    transform: rotateY(0deg);
+}
+
+.boxOpen::after,
+.boxMatch::after {
+    transform: rotateY(180deg);
+}
+
+/* O .img que você tinha não era usado, mas aqui está a estilização correta
+   para as imagens DENTRO das cartas do jogo da memória (caso precise): */
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Lembre-se de adicionar `visibility: hidden;` no CSS das imagens 
+       e `visibility: visible;` na classe `.boxOpen img` para o efeito flip! */
+}
